@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <USER_INFO
+            ID ="1"
+            CUSTOMER_ID="1"
+            GENDER ="1"
+            CITY ="包头"
+            CREATE_TIME ="2016-05-18 09:37:15"
+            UPDATE_TIME  ="2016-05-18 09:34:43"
+    />
+</dataset>
