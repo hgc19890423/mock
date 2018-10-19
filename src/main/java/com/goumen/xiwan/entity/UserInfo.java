@@ -1,7 +1,9 @@
 package com.goumen.xiwan.entity;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 public class UserInfo {
@@ -11,7 +13,7 @@ public class UserInfo {
      *
      * @mbggenerated Tue Oct 16 11:06:34 CST 2018
      */
-    @NotEmpty(message = "{param.customer.null}")
+    @NotNull(message = "{param.customer.null}")
     private Integer id;
 
     /**
@@ -44,6 +46,8 @@ public class UserInfo {
      *
      * @mbggenerated Tue Oct 16 11:06:34 CST 2018
      */
+    //springmvc数据格式化
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createTime;
 
     /**

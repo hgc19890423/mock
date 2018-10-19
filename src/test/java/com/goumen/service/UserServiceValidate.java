@@ -17,8 +17,11 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.UnexpectedTypeException;
+
+import java.util.Set;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -43,32 +46,16 @@ public class UserServiceValidate extends BaseTest {
 
 
     @Test
-    public void test(){
+    public void test() {
         UserInfo userInfo = new UserInfo();
         userInfo.setCustomerId(1);
         try {
-           userInfoService.selectUserInfoByCustomerId(userInfo);
-       }catch (ConstraintViolationException e){
-            System.out.println(e.getConstraintViolations());
+            userInfoService.selectUserInfoByCustomerId(userInfo);
+        }catch (ConstraintViolationException e){
+            for (ConstraintViolation<?> e1:e.getConstraintViolations()){
+                System.out.println(e1.getMessage());
+            }
         }
 
     }
-
-    @Test
-    public void testGetUserInfo() throws Exception {
-        MvcResult result = mockMvc.perform(get("/user/validate").param("user.id","1"))
-                .andExpect(status().isOk())
-                .andDo(print())
-                .andReturn();
-
-        System.out.println("================================");
-        System.out.println(result.getHandler());
-    }
-
-    @Test
-    public void test1(){
-        System.out.println(userInfoService.selectByPrimaryKey(1));
-    }
-
-
 }

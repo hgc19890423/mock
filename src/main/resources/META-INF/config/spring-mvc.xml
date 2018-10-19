@@ -10,14 +10,47 @@
        http://www.springframework.org/schema/mvc
        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
-    <context:component-scan base-package="com.goumen.xiwan.controller
-                                          " use-default-filters="false">
+    <context:component-scan base-package="com.goumen.xiwan.controller" use-default-filters="false">
         <context:include-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
     <mvc:default-servlet-handler/>
 
-    <mvc:annotation-driven />
+    <mvc:annotation-driven validator="validator">
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/plain;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
+    <!--    这部分是spring ,springmvc都与hibernate validate整合起来了，不论是controller,还是rpc调用都有效果-->
+    <bean class="org.springframework.validation.beanvalidation.BeanValidationPostProcessor">
+        <property name="validator" ref="validator"/>
+    </bean>
+    <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor">
+        <property name="validator" ref="validator"/>
+    </bean>
+
+    <bean id="validator"
+          class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+        <property name="validationMessageSource" ref="messageSource"/>
+    </bean>
+    <!-- 这里是国际化的配置，可以是英文-->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="defaultEncoding" value="UTF-8"/>
+        <property name="basenames">
+            <list>
+                <value>META-INF/param/messages</value>
+            </list>
+        </property>
+    </bean>
+
 
 </beans>

@@ -34,8 +34,6 @@
         <property name="properties" ref="configProperties"/>
     </bean>
 
-
-    <import resource="spring-validate.xml"/>
     <import resource="spring-db.xml"/>
 
 </beans>
