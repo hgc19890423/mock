@@ -7,10 +7,12 @@ import com.goumen.xiwan.entity.Employee;
 import com.goumen.xiwan.entity.UserInfo;
 import com.goumen.xiwan.utils.EmployeeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Service
 @Validated
@@ -27,6 +29,9 @@ public class UserInfoService {
 
     @Autowired
     private OtherOpertion otherOpertion;
+
+    @Value("${notify.email.to}")
+    private List<String> emails;
 
     public UserInfo selectByPrimaryKey(Integer id){
         return userInfoMapper.selectByPrimaryKey(id);
@@ -65,5 +70,12 @@ public class UserInfoService {
     //validate
     public void selectUserInfoByCustomerId(@Valid UserInfo userInfo){
         System.out.println("validate=====================");
+    }
+
+    //customerEditer
+    public void printEmail(){
+        emails.forEach(e ->{
+            System.out.println(e);
+        });
     }
 }

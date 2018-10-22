@@ -9,7 +9,6 @@ import org.mockito.InjectMocks;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.springframework.mock.staticmock.MockStaticEntityMethods;
 
 import static junit.framework.TestCase.assertEquals;
 

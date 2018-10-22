@@ -3,6 +3,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
@@ -26,8 +28,33 @@
                     </list>
                 </property>
             </bean>
+            <bean id="fastJsonHttpMessageConverter" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <!-- 不能写反，不然ie下提示下载-->
+                        <value>text/html;charest=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
+    <!--<bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="formatters">
+            <list>
+                <bean class="com.goumen.xiwan.utils.DateFormatter" c:_0="yyyy-MM-dd"/>
+            </list>
+        </property>
+    </bean>-->
+
+   <!-- <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.goumen.xiwan.utils.StringToDateConverter" p:datePattern="yyyy-MM-dd"/>
+            </list>
+        </property>
+    </bean>-->
 
     <!--    这部分是spring ,springmvc都与hibernate validate整合起来了，不论是controller,还是rpc调用都有效果-->
     <bean class="org.springframework.validation.beanvalidation.BeanValidationPostProcessor">

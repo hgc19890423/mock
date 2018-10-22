@@ -45,8 +45,8 @@ public class UserInfo {
      * This field corresponds to the database column user_info.create_time
      *
      * @mbggenerated Tue Oct 16 11:06:34 CST 2018
+     * springmvc数据格式化
      */
-    //springmvc数据格式化
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date createTime;
 

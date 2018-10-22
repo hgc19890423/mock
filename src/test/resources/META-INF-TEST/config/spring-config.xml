@@ -38,4 +38,13 @@
                                 type="annotation"/>
     </context:component-scan>
 
+    <!--spring 属性编辑-->
+    <bean id="customEditorConfigurer" class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="customEditors">
+            <map>
+                <entry key="java.util.List" value="com.goumen.xiwan.utils.ListPropertyEditor"/>
+            </map>
+        </property>
+    </bean>
+
 </beans>

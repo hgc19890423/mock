@@ -58,4 +58,10 @@ public class UserServiceValidate extends BaseTest {
         }
 
     }
+
+
+    @Test
+    public void testCustomerEditer(){
+        userInfoService.printEmail();
+    }
 }
