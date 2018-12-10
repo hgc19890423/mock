@@ -17,7 +17,8 @@ public class MockingPrivateMethod {
     public void testExist() {
         try {
             EmployeeService employeeService = PowerMockito.spy(new EmployeeService());
-            PowerMockito.doNothing().when(employeeService, "checkExist", "wangwenjun");
+            //如果私有方法没有返回值，就用 PowerMockito.doNoting()
+            PowerMockito.doReturn("aa").when(employeeService, "checkExist", "wangwenjun");
             boolean result = employeeService.exist("wangwenjun");
             assertTrue(result);
             PowerMockito.verifyPrivate(employeeService).invoke("checkExist", "wangwenjun");

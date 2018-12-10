@@ -28,8 +28,8 @@
         <property name="properties" ref="configProperties"/>
     </bean>
 
-    <import resource="classpath:META-INF-TEST/config/spring.db.xml"/>
-<!--    <import resource="classpath:META-INF-TEST/config/spring.h2db.xml"/>-->
+    <!--<import resource="classpath:META-INF-TEST/config/spring.db.xml"/>-->
+    <import resource="classpath:META-INF-TEST/config/spring.h2db.xml"/>
 
     <aop:aspectj-autoproxy/>
 

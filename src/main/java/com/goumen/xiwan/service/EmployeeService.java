@@ -44,10 +44,11 @@ public class EmployeeService {
     }
 
     public boolean exist(String userName) {
-        checkExist(userName);
+        String s = checkExist(userName);
+        System.out.println(s);
         return true;
     }
-    private void checkExist(String userName)
+    private String checkExist(String userName)
     {
         throw new UnsupportedOperationException();
     }
