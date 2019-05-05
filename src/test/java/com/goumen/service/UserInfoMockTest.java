@@ -14,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Matchers;
 import org.mockito.Mock;
+import org.mockito.Spy;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.modules.junit4.PowerMockRunner;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -46,7 +47,8 @@ public class UserInfoMockTest {
 
     //用于多级调用
     @InjectMocks
-    private CreditOrderService creditOrderService;
+    @Spy
+    private CreditOrderService creditOrderService = new CreditOrderService();
 
     @Mock
     private CreditOrderMapper creditOrderMapper;
@@ -61,7 +63,7 @@ public class UserInfoMockTest {
     public void setUp() throws Exception {
         //这俩个工具都可以使用，一个是spring的。一个是自己的
         //ReflectionTestUtils.setField(userInfoService, "creditOrderService", creditOrderService);
-        ReflectionField.setProperty(userInfoService, "creditOrderService", creditOrderService);
+        //ReflectionField.setProperty(userInfoService, "creditOrderService", creditOrderService);
     }
 
     //这里是一级调用的mock
